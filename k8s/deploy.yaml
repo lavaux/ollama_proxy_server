@@ -30,12 +30,7 @@ spec:
             memory: "100Mi"
         volumeMounts:
           - name: config
-            mountPath: /app/config.ini
-            subPath: config.ini
-            readOnly: true
-          - name: config
-            mountPath: /app/authorized_users.txt
-            subPath: authorized_users.txt
+            mountPath: /config
             readOnly: true
       volumes:
        - name: config
