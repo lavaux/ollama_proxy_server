@@ -2,6 +2,7 @@ import sys
 import random
 from getpass import getuser
 from pathlib import Path
+from bcrypt import hashpw, gensalt
 
 def generate_key(length=10):
     """Generate a random key of given length"""
@@ -11,13 +12,14 @@ def generate_key(length=10):
 def add_user(users_list=None):
     """Add a new user to the users list file"""
     user_name = input('Enter your username: ')
-    key = generate_key()
-    print(f'Your key is: {user_name}:{key}')
+    plain_key = generate_key()
+    hashed_key = hashpw(plain_key.encode('utf-8'), gensalt()).decode('utf-8')
+    print(f'Your key is: {user_name=}:{plain_key=}')
     if not users_list or not users_list.exists():
         users_list = Path(users_list) if users_list else Path('authorized_users.txt')
         users_list.touch(exist_ok=True)
     with open(users_list, 'a') as f:
-        f.write(f'{user_name}:{key}\n')
+        f.write(f'{user_name}:{hashed_key}\n')
     print(f'User {user_name} added to the authorized users list')
 
 def main():
