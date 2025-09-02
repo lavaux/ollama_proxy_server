@@ -8,8 +8,8 @@ RUN apt update \
     && apt clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && git clone https://github.com/lavaux/ollama_proxy_server.git \
-    && git checkout v$VER \
-    && mv ollama_proxy_server /app
+    && mv ollama_proxy_server /app \
+    && cd /app && git checkout v${VER}
 
 # Change working directory to cloned git repository
 WORKDIR /app
