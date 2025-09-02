@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ollama-proxy 
+  namespace: ollama-proxy
+  labels:
+    app: ollama-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ollama-proxy
+  template:
+    metadata:
+      annotations:
+        config-version: "1"
+      labels:
+        app: ollama-proxy
+      namespace: ollama-proxy
+    spec:
+      containers:
+      - name: ollama-proxy 
+        image: glvx/ollama-proxy:0.1.0
+        ports:
+          - containerPort: 80
+            name: http-web-svc
+        resources:
+          requests:
+            cpu: 100m
+            memory: "100Mi"
+        volumeMounts:
+          - name: config
+            mountPath: /app/config.ini
+            subPath: config.ini
+            readOnly: true
+          - name: config
+            mountPath: /app/authorized_users.txt
+            subPath: authorized_users.txt
+            readOnly: true
+      volumes:
+       - name: config
+         secret:
+           secretName: ollama-config

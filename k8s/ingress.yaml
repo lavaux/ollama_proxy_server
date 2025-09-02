@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ollama-proxy
+  namespace: ollama-proxy
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "30m"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
+#    cert-manager.io/cluster-issuer: letsencrypt 
+spec:
+  tls:
+    - hosts:
+      - example-hostname
+      secretName: hedgedoc-tls
+  rules:
+    - host: example-hostname
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: ollama-proxy
+                port:
+                  name: http
+
