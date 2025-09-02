@@ -24,7 +24,7 @@ setuptools.setup(
     description="A fastapi server for petals decentralized text generation",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/ParisNeo/ollama_proxy_server",
+    url="https://github.com/lavaux/ollama_proxy_server",
     packages=setuptools.find_packages(),  
     include_package_data=True,
     install_requires=requirements,

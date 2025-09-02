@@ -3,7 +3,7 @@ FROM python:3.11
 ARG VER=0.1.0
 # Update packagtes, install necessary tools into the base image, clean up and clone git repository
 RUN apt update \
-    && apt install -y --no-install-recommends --no-install-suggests git apache2 \
+    && apt install -y --no-install-recommends --no-install-suggests git bash \
     && apt autoremove -y --purge \
     && apt clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
