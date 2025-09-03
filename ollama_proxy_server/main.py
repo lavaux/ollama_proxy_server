@@ -265,6 +265,7 @@ def main():
                 post_params = post_data# parse_qs(post_data.decode('utf-8'))
             else:
                 post_params = {}
+                post_data = None
 
             # Find the server with the lowest number of active requests.
             min_active_server = servers[0]
@@ -310,7 +311,6 @@ def main():
                                 error="Malformed JSON"
                             )
                             return
-
 
                     response = requests.request(self.command, cs['url'] + path, params=get_params, data=post_params, stream=post_data_dict.get("stream", False))
                     self._send_response(response)
