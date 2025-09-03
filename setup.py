@@ -18,7 +18,7 @@ requirements_dev = read_requirements("requirements_dev.txt")
 
 setuptools.setup(
     name="ollama_proxy_server",
-    version="7.1.0",
+    version="0.2.1",
     author="Saifeddine ALOUI (ParisNeo)",
     author_email="aloui.saifeddine@gmail.com",
     description="A fastapi server for petals decentralized text generation",
