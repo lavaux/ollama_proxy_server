@@ -24,6 +24,8 @@ import sys
 
 ALLOWED_PATHS = {
     '/api/generate',
+    '/api/show',
+    '/api/ps',
     '/api/chat',
     '/v1/chat/completions',
     '/api/tags',  # Example of another valid endpoint
@@ -295,6 +297,7 @@ def main():
                             post_data_dict = json.loads(post_data_str)
                         except json.JSONDecodeError:
                             ASCIIColors.red("Invalid JSON payload")
+                            cs['queue'].get_nowait()
                             self.send_response(400)
                             self.end_headers()
                             self.add_access_log_entry(
