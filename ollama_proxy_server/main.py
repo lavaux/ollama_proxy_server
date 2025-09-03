@@ -27,6 +27,7 @@ ALLOWED_PATHS = {
     '/api/show',
     '/api/ps',
     '/api/chat',
+    '/api/embed',
     '/v1/chat/completions',
     '/api/tags',  # Example of another valid endpoint
     '/',
